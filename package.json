@@ -60,7 +60,8 @@
       "entitlementsInherit": "build/entitlements.mac.plist",
       "extendInfo": {
         "NSUserNotificationAlertStyle": "banner"
-      }
+      },
+      "artifactName": "Hesta-Downloader-${version}-${arch}.${ext}"
     },
     "dmg": {
       "title": "Hesta Downloader",

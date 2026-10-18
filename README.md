@@ -8,6 +8,40 @@ Downloads are resumable, survive app restarts, and run several at a time.
 
 ---
 
+## Download
+
+Latest version: **1.0.0** — [all releases](https://github.com/hesta-io/youtube-downloader/releases)
+
+| Mac | Installer (recommended) | Archive | Size |
+| --- | --- | --- | --- |
+| **Apple Silicon** (M1, M2, M3, M4…) | [Hesta-Downloader-1.0.0-arm64.dmg](https://github.com/hesta-io/youtube-downloader/releases/download/v1.0.0/Hesta-Downloader-1.0.0-arm64.dmg) | [.zip](https://github.com/hesta-io/youtube-downloader/releases/download/v1.0.0/Hesta-Downloader-1.0.0-arm64.zip) | 154 MB |
+| **Intel** | [Hesta-Downloader-1.0.0-x64.dmg](https://github.com/hesta-io/youtube-downloader/releases/download/v1.0.0/Hesta-Downloader-1.0.0-x64.dmg) | [.zip](https://github.com/hesta-io/youtube-downloader/releases/download/v1.0.0/Hesta-Downloader-1.0.0-x64.zip) | 170 MB |
+
+Not sure which Mac you have?  → *Apple menu → About This Mac*: "Chip: Apple M…" means Apple
+Silicon, "Processor: Intel…" means Intel.
+
+**Install:** open the `.dmg` and drag **Hesta Downloader** onto **Applications**.
+
+**First launch:** the app is not yet notarized by Apple, so macOS blocks it the first time.
+Open *System Settings → Privacy & Security*, scroll down and click **Open Anyway** next to
+"Hesta Downloader" (or run `xattr -dr com.apple.quarantine "/Applications/Hesta Downloader.app"`).
+On first run the app downloads its download engine (~30 MB) once.
+
+<details>
+<summary>SHA-256 checksums</summary>
+
+```
+b11a1c3c6be0ea6ccc2549adb11572738cc419e08d079dcede29f3d15f157241  Hesta-Downloader-1.0.0-arm64.dmg
+e8b2fe31e2177c54104adbfbdf1b04da305cc294e10fc0d3ee43f263f77e3252  Hesta-Downloader-1.0.0-x64.dmg
+5bbe40e0b7defeccd1f8025bca09faf8c08316a824402ec80d1b0d9e5397e155  Hesta-Downloader-1.0.0-arm64.zip
+5a29dfe630ba1657ade292f64822b8440299ddf3199b5c03bd6bd22e0962a3c1  Hesta-Downloader-1.0.0-x64.zip
+```
+
+Verify with `shasum -a 256 Hesta-Downloader-1.0.0-arm64.dmg`.
+</details>
+
+---
+
 ## Features
 
 - **Detects every kind of YouTube link** — `youtube.com/watch`, `youtu.be`, Shorts, Live, embeds,
@@ -48,7 +82,7 @@ npm test           # unit tests
 ### Building
 
 ```sh
-npm run dist       # .dmg + .zip for Apple Silicon (arm64) and Intel (x64) → dist/
+npm run dist       # Hesta-Downloader-<version>-{arm64,x64}.{dmg,zip} → dist/
 npm run pack       # unpacked .app for the current architecture only (quick check)
 npm run icon       # regenerate build/icon.png + build/icon.icns from the Hesta mark
 npm run ffmpeg -- mac-arm64 mac-x64   # (re)fetch bundled FFmpeg for specific targets
