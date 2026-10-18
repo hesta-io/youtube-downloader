@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'">
+  <title>Settings</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body class="settings">
+  <header class="settings-titlebar drag"><span>Settings</span></header>
+  <div class="settings-scroll">
+
+    <h2 class="group-title">Downloads</h2>
+    <div class="group">
+      <div class="g-row">
+        <div class="g-label">Download folder<small id="s-folder-path"></small></div>
+        <button class="btn btn-small" id="s-folder" type="button">Change…</button>
+      </div>
+      <div class="g-row">
+        <label class="g-label" for="s-quality">Default quality</label>
+        <select class="select" id="s-quality"></select>
+      </div>
+      <div class="g-row">
+        <label class="g-label" for="s-concurrency">Simultaneous downloads</label>
+        <select class="select select-narrow" id="s-concurrency">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+          <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+        </select>
+      </div>
+      <div class="g-row">
+        <div class="g-label">Resume unfinished downloads on launch<small>Partially downloaded files continue where they stopped.</small></div>
+        <input type="checkbox" class="switch" data-key="resumeOnLaunch">
+      </div>
+    </div>
+
+    <h2 class="group-title">Files</h2>
+    <div class="group">
+      <div class="g-row">
+        <label class="g-label" for="s-container">Video format<small>Automatic uses MP4 when possible, otherwise MKV.</small></label>
+        <select class="select" id="s-container">
+          <option value="auto">Automatic</option>
+          <option value="mp4">MP4</option>
+          <option value="mkv">MKV</option>
+        </select>
+      </div>
+      <div class="g-row">
+        <div class="g-label">Prefer H.264 video<small>Plays everywhere, including QuickTime. Above 1080p, YouTube only offers VP9/AV1.</small></div>
+        <input type="checkbox" class="switch" data-key="preferCompatible">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Create a folder for each playlist</div>
+        <input type="checkbox" class="switch" data-key="playlistSubfolder">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Number playlist videos<small>Prefixes file names with their position, e.g. “03 - Title”.</small></div>
+        <input type="checkbox" class="switch" data-key="numberPlaylistItems">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Add video ID to file names<small>Prevents clashes between videos with the same title.</small></div>
+        <input type="checkbox" class="switch" data-key="includeIdInName">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Embed thumbnail as cover art</div>
+        <input type="checkbox" class="switch" data-key="embedThumbnail">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Embed English subtitles</div>
+        <input type="checkbox" class="switch" data-key="embedSubs">
+      </div>
+    </div>
+
+    <h2 class="group-title">Network</h2>
+    <div class="group">
+      <div class="g-row">
+        <label class="g-label" for="s-cookies">Use cookies from<small>For age-restricted, members-only or “confirm you’re not a bot” videos. Read once — macOS may ask for Keychain access a single time.</small></label>
+        <select class="select" id="s-cookies">
+          <option value="none">Don’t use cookies</option>
+          <option value="safari">Safari</option>
+          <option value="chrome">Google Chrome</option>
+          <option value="firefox">Firefox</option>
+          <option value="brave">Brave</option>
+          <option value="edge">Microsoft Edge</option>
+          <option value="opera">Opera</option>
+          <option value="vivaldi">Vivaldi</option>
+          <option value="chromium">Chromium</option>
+        </select>
+      </div>
+      <div class="g-row">
+        <label class="g-label" for="s-rate">Speed limit<small>Per download, e.g. 2M or 500K. Empty for unlimited.</small></label>
+        <input class="text-field" id="s-rate" placeholder="Unlimited" spellcheck="false">
+      </div>
+      <div class="g-row">
+        <label class="g-label" for="s-proxy">Proxy<small>e.g. socks5://127.0.0.1:1080</small></label>
+        <input class="text-field wide" id="s-proxy" placeholder="None" spellcheck="false">
+      </div>
+    </div>
+
+    <h2 class="group-title">General</h2>
+    <div class="group">
+      <div class="g-row">
+        <div class="g-label">Detect copied YouTube links</div>
+        <input type="checkbox" class="switch" data-key="watchClipboard">
+      </div>
+      <div class="g-row">
+        <div class="g-label">Show notifications</div>
+        <input type="checkbox" class="switch" data-key="notify">
+      </div>
+    </div>
+
+    <h2 class="group-title">Download engine</h2>
+    <div class="group">
+      <div class="g-row">
+        <div class="g-label">yt-dlp<small id="e-ytdlp"></small></div>
+        <button class="btn btn-small" id="e-update" type="button">Check for Updates</button>
+      </div>
+      <div class="g-row">
+        <div class="g-label">Update automatically<small>YouTube changes often; staying current keeps downloads working.</small></div>
+        <input type="checkbox" class="switch" data-key="autoUpdateEngine">
+      </div>
+      <div class="g-row">
+        <div class="g-label">FFmpeg<small id="e-ffmpeg"></small></div>
+      </div>
+      <div class="g-row">
+        <div class="g-label">JavaScript runtime<small id="e-js"></small></div>
+      </div>
+    </div>
+
+    <footer class="settings-footer">
+      <div class="settings-brand" id="s-brand"></div>
+      <div id="s-version"></div>
+    </footer>
+  </div>
+
+  <script src="logo.js"></script>
+  <script src="format.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

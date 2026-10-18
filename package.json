@@ -1,0 +1,96 @@
+{
+  "name": "hesta-downloader",
+  "productName": "Hesta Downloader",
+  "version": "1.0.0",
+  "description": "A native-feeling macOS YouTube video & playlist downloader by Hesta.",
+  "main": "src/main/main.js",
+  "author": "Hesta <ict@su.edu.krd>",
+  "homepage": "https://hesta.io",
+  "license": "ISC",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "postinstall": "node scripts/fetch-ffmpeg.js",
+    "start": "electron .",
+    "test": "node --test test/*.test.js",
+    "ffmpeg": "node scripts/fetch-ffmpeg.js",
+    "icon": "electron build/make-icon.js",
+    "dist": "node scripts/fetch-ffmpeg.js mac-arm64 mac-x64 && electron-builder --mac",
+    "pack": "node scripts/fetch-ffmpeg.js && electron-builder --mac --dir"
+  },
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "io.hesta.downloader",
+    "productName": "Hesta Downloader",
+    "copyright": "\u00a9 Hesta",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSUserNotificationAlertStyle": "banner"
+      }
+    },
+    "dmg": {
+      "title": "Hesta Downloader",
+      "contents": [
+        {
+          "x": 140,
+          "y": 180
+        },
+        {
+          "x": 400,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "electronLanguages": [
+      "en"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/ffmpeg/${os}-${arch}",
+        "to": "ffmpeg",
+        "filter": [
+          "ffmpeg",
+          "ffprobe",
+          "ffmpeg.exe",
+          "ffprobe.exe"
+        ]
+      }
+    ]
+  }
+}
